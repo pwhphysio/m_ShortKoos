@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ShortKOOS Score Calculator</title>
+	<style>
+		@font-face{
+			font-family: 'Source Code Pro';
+			font-weight: 300;
+			font-style: normal;
+			font-stretch: normal;
+			src: url('./WOFF2/TTF/SourceCodePro-Light.ttf.woff2') format('woff2'),
+				url('./WOFF/OTF/SourceCodePro-Light.otf.woff') format('woff'),
+				url('./OTF/SourceCodePro-Light.otf') format('opentype'),
+				url('./TTF/SourceCodePro-Light.ttf') format('truetype');
+		}
+			/*
+		body {
+			margin: 0;
+		}
+
+		div {
+			width: 100vw;
+			height: 100vh;
+		}
+		*/
+        
+		Legend{
+			font-weight: bold;
+			font-size: 35px;
+		}
+		html {
+    		background-color: rgb(208, 219, 233);
+      	}
+
+		h1 {
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			font-size: 45px;
+	
+		}
+
+		h2 {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			text-align: center;
+			font-size: 25px;
+		}
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+
+		form {
+			margin: 10px;
+			max-width: auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			font-size: 30px;
+			background-color: rgb(224, 233, 246);
+			line-height: 2;
+		}
+
+		input {
+			font-size: 30px;
+		}
+
+		p {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		input[type="radio"] {
+			margin-right: 10px;
+			margin-left: 15px;
+			transform: scale(1.5);
+		}
+
+		input[type="radio"]:last-child {
+			margin-right: 0;
+		}
+
+		button {
+			background-color: rgb(0, 145, 255);
+			color: white;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 30px;
+			display: block;
+			margin: 0 auto;
+		}
+
+		button[type="button"]:hover {
+			background-color: rgb(100, 182, 245);
+		}
+
+		input[type="reset"] {
+			background-color: rgb(61, 120, 165);
+			color: white;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			font-size: 30px;
+			display: block;
+			margin: 0 auto;
+			padding: 20px 33px;
+			margin-right: 0px;
+		}
+
+		input[type="reset"]:hover {
+			background-color: rgb(86, 146, 193);
+		}
+
+		.button-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 16px;
+		}
+
+		.btn-primary {
+			/* padding: 23px 33px; */
+			padding: 20px 33px;
+			margin-left: 40px;
+		}
+
+        .increase-font-size-btn {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 11px 12px;
+			background-color: white;
+			color: black;
+			border-radius: 20px;
+        }
+
+		.decrease-font-size-btn{
+			position: absolute;
+			top: 10px;
+			right: 59px;
+			padding: 17px 17px;
+			background-color: white;
+			color: black;
+			border-radius: 20px;
+			font-size: 20px;
+        }
+
+		.button {
+			display: inline-block;
+		}
+
+		
+		#result {
+			margin-top: 20px;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#popup {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgb(232, 232, 176);
+			border-radius: 15px;
+			border: 1px solid black;
+			padding: 20px;
+			display: none;
+			font-size: 30px;
+			text-align: center;
+			max-width: 100%;
+			width: 80%;
+ 		 	max-height: 80%;
+  			overflow: auto;
+		}
+
+		.popup-content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.popup-message {
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+
+		.popup-button {
+			margin-top: 10px;
+			padding: 9px 15px;
+			border-radius: 13px;
+            
+		}
+		
+		#pain_result {
+			margin-top: 20px;
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#symptoms_result {
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#ADL_result {
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#Sport_result {
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		#QOL_result {
+			font-size: 30px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+
+
+        /* for design for mobile version*/
+		form {
+			font-size: 60px;
+        }
+        legend {
+            font-size: 70px;
+        }
+        h1{
+            font-size: 80px;
+        }
+        h2{
+            font-size: 60px;
+        }
+        input[type="radio"] {
+            margin-right: 15px;
+            margin-left: 15px;
+            transform :scale(3);
+        }
+        button {
+            transform: scale(3);
+        }
+        .increase-font-size-btn {
+			transform: scale(2);
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+		.decrease-font-size-btn{
+			transform: scale(2);
+            margin-right: 65px;
+            margin-top: 20px;
+        }
+        #pain_result {
+            margin-top: 40px;
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        #symptoms_result {
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        #ADL_result {
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        #Sport_result {
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        #QOL_result {
+            font-size: 60px;
+            font-weight: bold;
+        }
+        input[type="reset"] {
+			transform: scale(2);
+		}
+		.btn-primary {
+			transform: scale(2);
+            margin-left: 200px;
+
+		}
+        .popup-button {
+			margin-top: 10px;
+			padding: 9px 15px;
+			border-radius: 13px;
+            transform: scale(2);
+            margin-bottom: 40px;
+		}
+        .popup-message {
+			font-size: 60px;
+            line-height: 2;
+		}
+
+		/*
+		@media only screen and (max-width: 1000px) {
+		/* CSS code for screens smaller than 600px (i.e. mobile devices)
+			form {
+				font-size: 60px;
+			}
+			legend {
+				font-size: 70px;
+			}
+			h1{
+				font-size: 80px;
+			}
+			input[type="radio"] {
+			margin-right: 15px;
+			margin-left: 15px;
+			transform :scale(3);
+			}
+			button {
+				transform: scale(3);
+				margin-left: 80px;
+				margin-bottom: 80px;
+			}
+			#pain_result {
+				margin-top: 40px;
+				font-size: 40px;
+				font-weight: bold;
+			}
+
+			#symptoms_result {
+				font-size: 40px;
+				font-weight: bold;
+			}
+
+			#ADL_result {
+				font-size: 40px;
+				font-weight: bold;
+			}
+
+			#Sport_result {
+				font-size: 40px;
+				font-weight: bold;
+			}
+
+			#QOL_result {
+				font-size: 40px;
+				font-weight: bold;
+			}
+		}
+		
+		
+		@media only screen and (min-width: 1001px) {
+			form {
+				font-size: 20px;
+			}
+		}
+        */
+
+		/*
+		/* Default styles for all screen sizes 
+
+		/* Media query for screens 600px wide or larger 
+		
+		@media screen and (min-width: 600px) {
+		body {
+			font-size: 18px;
+			max-width: 960px;
+			margin: 0 auto;
+		}
+		}
+
+		/* Media query for screens 1200px wide or larger 
+		@media screen and (min-width: 1200px) {
+		body {
+			font-size: 20px;
+			max-width: 1200px;
+		}
+		} */
+
+
+
+	</style>
+	<script text="text/javascript">
+        function showPopup(message) {
+			var popup = document.getElementById("popup");
+			var messageElement = popup.querySelector(".popup-message");
+			messageElement.innerHTML = message;
+			popup.style.display = "block";
+			return popup;
+		}
+
+		function hidePopup(popup) {
+			popup.style.display = "none";
+        
+        }
+
+		function runALLFunctions() {
+			calculatePAINscore(event);
+			calculateADLscore(event);
+			calculateQOLscore(event);
+            totalpopup();
+		}
+
+        var totalPAINquestions = 0;
+		var totalPAINscore = 0;
+		var PAINscore = 0;
+
+		function calculatePAINscore(event) {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("pain_score");
+			totalPAINquestions = 0;
+			totalPAINscore = 0;
+			PAINscore = 0;
+
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalPAINscore += parseFloat(values[i].value);
+					totalPAINquestions++;
+				}
+			}
+		}
+
+        var totalSYMPTOMSquestions = 0;
+		var totalSYMPTOMSscore = 0;
+		var SYMPTOMSscore = 0;
+
+		function calculateSYMPTOMSscore(event) {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("symptoms_score");
+			totalSYMPTOMSquestions = 0;
+			totalSYMPTOMSscore = 0;
+			SYMPTOMSscore = 0;
+
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalSYMPTOMSscore += parseFloat(values[i].value);
+					totalSYMPTOMSquestions++;
+				}
+			}
+		}
+
+        var totalADLquestions = 0;
+		var totalADLscore = 0;
+		var ADLscore = 0;
+
+		function calculateADLscore(event) {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("ADL_score");
+			totalADLquestions = 0;
+			totalADLscore = 0;
+			ADLscore = 0;
+
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalADLscore += parseFloat(values[i].value);
+					totalADLquestions++;
+				}
+			}
+		}
+
+        var totalSportquestions = 0;
+		var totalSportscore = 0;
+		var Sportscore = 0;
+
+		function calculateSportscore() {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("Sport_score");
+			totalSportquestions = 0;
+			totalSportscore = 0;
+			Sportscore = 0;
+
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalSportscore += parseFloat(values[i].value);
+					totalSportquestions++;
+				}
+			}
+		}
+
+        var totalQOLquestions = 0;
+		var totalQOLscore = 0;
+		var QOLscore = 0;
+
+		function calculateQOLscore() {
+			event.preventDefault(); // Prevent form submission
+			
+			var values = document.getElementsByClassName("QOL_score");
+			totalQOLquestions = 0;
+			totalQOLscore = 0;
+			QOLscore = 0;
+
+			for(var i = 0; i < values.length; i++) {
+				if(values[i].checked) {
+					totalQOLscore += parseFloat(values[i].value);
+					totalQOLquestions++;
+				}
+			}
+		}
+
+        function totalpopup() {
+			var totalnumberofquestions = totalPAINquestions + totalSYMPTOMSquestions + totalADLquestions + totalSportquestions + totalQOLquestions;
+
+			if (totalnumberofquestions >= 20){
+				PAINscore = 100 - ((totalPAINscore / totalPAINquestions) * 100) / 4;
+				document.getElementById("pain_result").innerHTML = "非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAIN score is: " + Math.round(PAINscore) + "/100";
+
+				ADLscore = 100 - ((totalADLscore / totalADLquestions) * 100) / 4;
+				document.getElementById("ADL_result").innerHTML = "Your ADL score is: " + Math.round(ADLscore) + "/100";
+			
+				QOLscore = 100 - ((totalQOLscore / totalQOLquestions) * 100) / 4;
+				document.getElementById("QOL_result").innerHTML = "Your QOL score is: " + Math.round(QOLscore) + "/100";
+
+				var popup = showPopup("非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAINscore is: " + Math.round(PAINscore) + "/100<br>"
+				+ "Your ADL socre is: " + Math.round(ADLscore) + "/100<br>"
+				+ "Your QOL socre is: " + Math.round(QOLscore) + "/100"
+				);
+			} else {
+				var failpopupcontent = "";
+
+				if (totalPAINquestions < 9){
+					document.getElementById("pain_result").innerHTML = "你在第一部份(疼痛)尚有" + (9 - totalPAINquestions)+ "條問題未回答<br>";
+					failpopupcontent += "你在第一部份(疼痛)尚有" + (9 - totalPAINquestions)+ "條問題未回答。<br>";
+				} else {
+					document.getElementById("pain_result").innerHTML = "";
+				}
+
+				if (totalADLquestions < 7){
+					document.getElementById("ADL_result").innerHTML = "你在第二部份(日常生活)尚有" + (7 - totalADLquestions)+ "條問題未回答<br>";
+					failpopupcontent += "你在第二部份(日常生活)尚有" + (7 - totalADLquestions)+ "條問題未回答。<br>";
+				} else {
+					document.getElementById("ADL_result").innerHTML = "";
+				}
+
+				if (totalQOLquestions < 4){
+					document.getElementById("QOL_result").innerHTML = "你在第三部份(膝關節對生活質量的影響)尚有" + (4 - totalQOLquestions)+ "條問題未回答<br>";
+					failpopupcontent += "你在第三部份(膝關節對生活質量的影響)尚有" + (4 - totalQOLquestions)+ "條問題未回答。<br>";
+				} else {
+					document.getElementById("QOL_result").innerHTML = "";
+				}
+
+				failpopupcontent += "請返回並繼續作答。"
+
+				var popup = showPopup(failpopupcontent);
+
+
+
+			}
+
+			var okButton = popup.querySelector(".popup-button");
+			okButton.addEventListener("click", function() {
+				hidePopup(popup);
+			});
+		}
+
+		function resetContent() {
+    		document.getElementById("pain_result").innerHTML = "";
+			document.getElementById("ADL_result").innerHTML = "";
+			document.getElementById("QOL_result").innerHTML = "";
+		}
+	</script>
+</head>
+<body>
+    <br><br><br><br><br>
+	<h1> HK Chinese KOOS KNEE SURVEY </h1>
+    <button class = "increase-font-size-btn" id="increase-font-button">大
+    </button>
+
+    <script>
+       // get the button element by its ID
+		var button = document.getElementById("increase-font-button");
+
+		// add an event listener to the button that increases the font size of all elements
+		button.addEventListener("click", function() {
+		// get all elements on the page
+		var elements = document.getElementsByTagName("*");
+
+		// loop through each element and increase its font size
+		for (var i = 0; i < elements.length; i++) {
+			var element = elements[i];
+			var tagName = element.tagName.toLowerCase();
+			var fontSize = window.getComputedStyle(element).getPropertyValue("font-size");
+			var newFontSize = parseFloat(fontSize) * 1.1;
+
+			// increase font size of text inputs, radio buttons, and labels
+			if ((tagName == "input" && element.type == "text") || (element.type == "radio")) {
+			element.style.fontSize = newFontSize + "px";
+			element.style.width = newFontSize - 15 + "px"; // added line to make radio buttons bigger
+			element.style.height = newFontSize - 15 + "px"; // added line to make radio buttons bigger
+			} else if (tagName == "label") {
+			element.style.fontSize = newFontSize + "px";
+			} else {
+			element.style.fontSize = newFontSize + "px";
+			}
+		}
+		});
+
+
+    </script>
+	<button class = "decrease-font-size-btn" id="decrease-font-button">小
+    </button>
+
+    <script>
+       // get the button element by its ID
+		var button = document.getElementById("decrease-font-button");
+
+		// add an event listener to the button that decreases the font size of all elements
+		button.addEventListener("click", function() {
+			// get all elements on the page
+			var elements = document.getElementsByTagName("*");
+
+			// loop through each element and decrease its font size
+			for (var i = 0; i < elements.length; i++) {
+				var element = elements[i];
+				var tagName = element.tagName.toLowerCase();
+				var fontSize = window.getComputedStyle(element).getPropertyValue("font-size");
+				var newFontSize = parseFloat(fontSize) * 0.9;
+
+				// decrease font size of text inputs, radio buttons, and labels
+				if ((tagName == "input" && element.type == "text") || (element.type == "radio")) {
+					element.style.fontSize = newFontSize + "px";
+					element.style.width = newFontSize - 15 + "px"; // added line to make radio buttons smaller
+					element.style.height = newFontSize - 15 + "px"; // added line to make radio buttons smaller
+				} else if (tagName == "label") {
+					element.style.fontSize = newFontSize + "px";
+				} else {
+					element.style.fontSize = newFontSize + "px";
+				}
+			}
+		});
+
+    </script>
+    <h2> 威爾斯親王醫院 物理治療部</h2>
+	<form>
+		說明：<br>
+		這個調查會詢問一些關於你的膝關節問題。
+		這些資料將會幫助我們了解你對膝關節的感覺以及你進行日常活動的能力。
+		在回答每條問題時，請選擇合適的選項，每題只能選一個答案。
+		如果你不是很確定怎樣回答一條問題，請盡量選擇一個你認為最好的答案。
+		<br><br>
+		<fieldset>
+			<legend>第一部分: 疼痛</legend>
+			<p>1. 你多常感到膝痛？</p>
+			<input type="radio" name="section1" value="0" class="pain_score"> 從不<br>
+			<input type="radio" name="section1" value="1" class="pain_score"> 每月一次<br>
+			<input type="radio" name="section1" value="2" class="pain_score"> 每週一次<br>
+			<input type="radio" name="section1" value="3" class="pain_score"> 每日一次<br>
+			<input type="radio" name="section1" value="4" class="pain_score"> 做不到
+			<br><br><strong>過去一星期，你在進行以下活動時會感到什麼程度的痛楚？</strong>
+			<p>2. 以膝關節為中心扭動或轉動身體</p>
+			<input type="radio" name="section2" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section2" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section2" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section2" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section2" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>3. 完全伸直膝關節</p>
+			<input type="radio" name="section3" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section3" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section3" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section3" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section3" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>4. 完全彎曲膝關節</p>
+			<input type="radio" name="section4" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section4" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section4" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section4" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section4" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>5. 在平地步行</p>
+			<input type="radio" name="section5" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section5" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section5" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section5" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section5" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>6. 上或下樓梯</p>
+			<input type="radio" name="section6" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section6" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section6" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section6" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section6" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>7. 晚上就寢</p>
+			<input type="radio" name="section7" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section7" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section7" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section7" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section7" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>8. 坐下或躺下</p>
+			<input type="radio" name="section8" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section8" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section8" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section8" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section8" value="4" class="pain_score"> 極度疼痛
+			<br><br><p>9. 挺直站立</p>
+			<input type="radio" name="section9" value="0" class="pain_score"> 沒有痛楚<br>
+			<input type="radio" name="section9" value="1" class="pain_score"> 輕微疼痛<br>
+			<input type="radio" name="section9" value="2" class="pain_score"> 頗為疼痛<br>
+			<input type="radio" name="section9" value="3" class="pain_score"> 非常疼痛<br>
+			<input type="radio" name="section9" value="4" class="pain_score"> 極度疼痛
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>第二部分: 日常生活</legend>
+			<p><strong>過去一星期，你在進行以下活動時膝關節使你感到有多困難？</p></strong>
+			<p>1. 起床</p>
+			<input type="radio" name="section20" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section20" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section20" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section20" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section20" value="4" class="ADL_score"> 極大困難
+			<br><br><p>2. 穿禨子/絲襪</p>
+			<input type="radio" name="section21" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section21" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section21" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section21" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section21" value="4" class="ADL_score"> 極大困難
+			<br><br><p>3. 從坐姿站起</p>
+			<input type="radio" name="section22" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section22" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section22" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section22" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section22" value="4" class="ADL_score"> 極大困難
+			<br><br><p>4. 彎腰至地/在地上檢起物品</p>
+			<input type="radio" name="section23" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section23" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section23" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section23" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section23" value="4" class="ADL_score"> 極大困難
+			<br><br><p>5. 轉動/扭動受傷的膝關節</p>
+			<input type="radio" name="section24" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section24" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section24" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section24" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section24" value="4" class="ADL_score"> 極大困難
+			<br><br><p>6. 跪下</p>
+			<input type="radio" name="section25" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section25" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section25" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section25" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section25" value="4" class="ADL_score"> 極大困難
+			<br><br><p>7. 蹲坐</p>
+			<input type="radio" name="section26" value="0" class="ADL_score"> 没有困難<br>
+			<input type="radio" name="section26" value="1" class="ADL_score"> 少許困難<br>
+			<input type="radio" name="section26" value="2" class="ADL_score"> 頗大困難<br>
+			<input type="radio" name="section26" value="3" class="ADL_score"> 非常困難<br>
+			<input type="radio" name="section26" value="4" class="ADL_score"> 極大困難
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>第三部分: 膝關節對生活質量的影響</legend>
+			<p>1. 你多常注意到你的膝關節問題？</p>
+			<input type="radio" name="section50" value="0" class="QOL_score"> 從不<br>
+			<input type="radio" name="section50" value="1" class="QOL_score"> 每月一次<br>
+			<input type="radio" name="section50" value="2" class="QOL_score"> 每星期一次<br>
+			<input type="radio" name="section50" value="3" class="QOL_score"> 每日一次<br>
+			<input type="radio" name="section50" value="4" class="QOL_score"> 經常
+			<br><br><p>2. 你有否改變生活模式來避免一些有機會傷及膝關節的活動？</p>
+			<input type="radio" name="section51" value="0" class="QOL_score"> 沒有改變<br>
+			<input type="radio" name="section51" value="1" class="QOL_score"> 少許改變<br>
+			<input type="radio" name="section51" value="2" class="QOL_score"> 頗大改變<br>
+			<input type="radio" name="section51" value="3" class="QOL_score"> 很大改變<br>
+			<input type="radio" name="section51" value="4" class="QOL_score"> 完全改變
+			<br><br><p>3. 你是否對你的膝關節缺乏信心？</p>
+			<input type="radio" name="section52" value="0" class="QOL_score"> 完全沒有<br>
+			<input type="radio" name="section52" value="1" class="QOL_score"> 少許<br>
+			<input type="radio" name="section52" value="2" class="QOL_score"> 普通<br>
+			<input type="radio" name="section52" value="3" class="QOL_score"> 嚴重<br>
+			<input type="radio" name="section52" value="4" class="QOL_score"> 極度
+			<br><br><p>4. 總括來說，你的膝關節對你的生活造成多大影響？</p>
+			<input type="radio" name="section53" value="0" class="QOL_score"> 完全沒有<br>
+			<input type="radio" name="section53" value="1" class="QOL_score"> 少許<br>
+			<input type="radio" name="section53" value="2" class="QOL_score"> 頗大<br>
+			<input type="radio" name="section53" value="3" class="QOL_score"> 非常大<br>
+			<input type="radio" name="section53" value="4" class="QOL_score"> 極大
+		</fieldset>
+			
+
+		<!-- <input type="button" value="Calculate QuickDASH Score" onclick="calculateQuickDASH()">
+		-->
+        <br>
+		<div id="pain_result"></div>
+		<div id="ADL_result"></div>
+		<div id="QOL_result"></div>
+		<br>
+		<div class="button-container">
+			<input type="reset" value="重設" onclick="resetContent()"> 
+			<button type="button" class="btn-primary" onclick="runALLFunctions(event)">提交</button>
+		</div>
+		<br>
+		<div class="centered-text">
+			<h1>謝謝您完成問卷</h1>
+		</div>
+
+        <!--
+		<br><br>
+		<button type="button" class="btn-primary" onclick="runALLFunctions()">提交</button>
+		<br>
+		<p style="text-align: center;"><strong>～非常感謝您完成了這份調查中所有的問題～</strong></p>
+		<div id="pain_result"></div>
+		<div id="ADL_result"></div>
+		<div id="QOL_result"></div>
+        -->
+	</form>
+    <div id="popup">
+		<div class="popup-content">
+		  <div class="popup-message"></div>
+		  <button class="popup-button">確定</button>
+		</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
