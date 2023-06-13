@@ -244,9 +244,9 @@
             font-size: 60px;
         }
         input[type="radio"] {
-            margin-right: 15px;
+            margin-right: 20px;
             margin-left: 15px;
-            transform :scale(3);
+            transform :scale(4);
         }
         button {
             transform: scale(3);
@@ -523,8 +523,8 @@
 				document.getElementById("QOL_result").innerHTML = "Your QOL score is: " + Math.round(QOLscore) + "/100";
 
 				var popup = showPopup("非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAINscore is: " + Math.round(PAINscore) + "/100<br>"
-				+ "Your ADL socre is: " + Math.round(ADLscore) + "/100<br>"
-				+ "Your QOL socre is: " + Math.round(QOLscore) + "/100"
+				+ "Your ADL score is: " + Math.round(ADLscore) + "/100<br>"
+				+ "Your QOL score is: " + Math.round(QOLscore) + "/100"
 				);
 			} else {
 				var failpopupcontent = "";
@@ -705,7 +705,7 @@
 			<input type="radio" name="section9" value="1" class="pain_score"> 輕微疼痛<br>
 			<input type="radio" name="section9" value="2" class="pain_score"> 頗為疼痛<br>
 			<input type="radio" name="section9" value="3" class="pain_score"> 非常疼痛<br>
-			<input type="radio" name="section9" value="4" class="pain_score"> 極度疼痛
+			<input type="radio" name="section9" value="4" class="pain_score"> 極度疼痛<br>
 		</fieldset>
 		<br>
 		<fieldset>
@@ -752,7 +752,7 @@
 			<input type="radio" name="section26" value="1" class="ADL_score"> 少許困難<br>
 			<input type="radio" name="section26" value="2" class="ADL_score"> 頗大困難<br>
 			<input type="radio" name="section26" value="3" class="ADL_score"> 非常困難<br>
-			<input type="radio" name="section26" value="4" class="ADL_score"> 極大困難
+			<input type="radio" name="section26" value="4" class="ADL_score"> 極大困難<br>
 		</fieldset>
 		<br>
 		<fieldset>
@@ -780,7 +780,7 @@
 			<input type="radio" name="section53" value="1" class="QOL_score"> 少許<br>
 			<input type="radio" name="section53" value="2" class="QOL_score"> 頗大<br>
 			<input type="radio" name="section53" value="3" class="QOL_score"> 非常大<br>
-			<input type="radio" name="section53" value="4" class="QOL_score"> 極大
+			<input type="radio" name="section53" value="4" class="QOL_score"> 極大<br>
 		</fieldset>
 			
 
