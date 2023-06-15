@@ -467,6 +467,66 @@
 					totalADLquestions++;
 				}
 			}
+
+			if (totalADLscore == 0){
+				ADLscore = 100;
+			} else if (totalADLscore == 1){
+				ADLscore = 94;
+			} else if (totalADLscore == 2){
+				ADLscore = 90;
+			} else if (totalADLscore == 3){
+				ADLscore = 85;
+			} else if (totalADLscore == 4){
+				ADLscore = 81;
+			} else if (totalADLscore == 5){
+				ADLscore = 78;
+			} else if (totalADLscore == 6){
+				ADLscore = 75;
+			} else if (totalADLscore == 7){
+				ADLscore = 73;
+			} else if (totalADLscore == 8){
+				ADLscore = 70;
+			} else if (totalADLscore == 9){
+				ADLscore = 68;
+			} else if (totalADLscore == 10){
+				ADLscore = 66;
+			} else if (totalADLscore == 11){
+				ADLscore = 65;
+			} else if (totalADLscore == 12){
+				ADLscore = 63;
+			} else if (totalADLscore == 13){
+				ADLscore = 61;
+			} else if (totalADLscore == 14){
+				ADLscore = 60;
+			} else if (totalADLscore == 15){
+				ADLscore = 58;
+			} else if (totalADLscore == 16){
+				ADLscore = 56;
+			} else if (totalADLscore == 17){
+				ADLscore = 54;
+			} else if (totalADLscore == 18){
+				ADLscore = 52;
+			} else if (totalADLscore == 19){
+				ADLscore = 49;
+			} else if (totalADLscore == 20){
+				ADLscore = 46;
+			} else if (totalADLscore == 21){
+				ADLscore = 42;
+			} else if (totalADLscore == 22){
+				ADLscore = 38;
+			} else if (totalADLscore == 23){
+				ADLscore = 33;
+			} else if (totalADLscore == 24){
+				ADLscore = 28;
+			} else if (totalADLscore == 25){
+				ADLscore = 22;
+			} else if (totalADLscore == 26){
+				ADLscore = 16;
+			} else if (totalADLscore == 27){
+				ADLscore = 8;
+			} else if (totalADLscore == 28){
+				ADLscore = 0;
+			}
 		}
 
         var totalSportquestions = 0;
@@ -516,14 +576,13 @@
 				PAINscore = 100 - ((totalPAINscore / totalPAINquestions) * 100) / 4;
 				document.getElementById("pain_result").innerHTML = "非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAIN score is: " + Math.round(PAINscore) + "/100";
 
-				ADLscore = 100 - ((totalADLscore / totalADLquestions) * 100) / 4;
-				document.getElementById("ADL_result").innerHTML = "Your ADL score is: " + Math.round(ADLscore) + "/100";
+				document.getElementById("ADL_result").innerHTML = "Your PS score is: " + Math.round(ADLscore) + "/100";
 			
 				QOLscore = 100 - ((totalQOLscore / totalQOLquestions) * 100) / 4;
 				document.getElementById("QOL_result").innerHTML = "Your QOL score is: " + Math.round(QOLscore) + "/100";
 
-				var popup = showPopup("非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAINscore is: " + Math.round(PAINscore) + "/100<br>"
-				+ "Your ADL score is: " + Math.round(ADLscore) + "/100<br>"
+				var popup = showPopup("非常感謝您完成了這份調查中所有的問題<br><br>請勿關閉此頁面，並將以下資料展示給物理治療師。<br><br> Your PAIN score is: " + Math.round(PAINscore) + "/100<br>"
+				+ "Your PS score is: " + Math.round(ADLscore) + "/100<br>"
 				+ "Your QOL score is: " + Math.round(QOLscore) + "/100"
 				);
 			} else {
