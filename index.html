@@ -227,7 +227,12 @@
 			font-weight: bold;
 			text-align: center;
 		}
-		
+		#create {
+			text-align: right; /* Align text to the right side of its container */
+ 			color: rgb(118, 113, 113); /* Set the text color to light grey */
+			font-size: 20px;
+			line-height: 1;
+		}
 
 
         /* for design for mobile version*/
@@ -305,6 +310,9 @@
         .popup-message {
 			font-size: 60px;
             line-height: 2;
+		}
+		#create{
+			font-size: 30px;
 		}
 
 		/*
@@ -631,7 +639,7 @@
 	</script>
 </head>
 <body>
-    <br><br><br><br><br>
+    <br><br><br><br><br><br>
 	<h1> HK Chinese KOOS KNEE SURVEY </h1>
     <button class = "increase-font-size-btn" id="increase-font-button">大
     </button>
@@ -700,7 +708,7 @@
 		});
 
     </script>
-    <h2> 威爾斯親王醫院 物理治療部</h2>
+    <h2> 新界東醫院聯網 物理治療部</h2>
 	<form>
 		說明：<br>
 		這個調查會詢問一些關於你的膝關節問題。
@@ -852,11 +860,14 @@
 		<br>
 		<div class="button-container">
 			<input type="reset" value="重設" onclick="resetContent()"> 
-			<button type="button" class="btn-primary" onclick="runALLFunctions(event)">提交</button>
+			<button type="button" class="btn-primary" onclick="runALLFunctions(event)">計算</button>
 		</div>
 		<br>
 		<div class="centered-text">
 			<h1>謝謝您完成問卷</h1>
+		</div>
+		<div id="create">
+			<p>威爾斯親王醫院物理治療部制作</p>
 		</div>
 
         <!--
